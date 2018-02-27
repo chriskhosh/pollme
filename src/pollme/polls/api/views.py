@@ -17,7 +17,7 @@ class QuestionListAPIView(APIView):
         Feel free to use DRF generic class based views
         Otherwise it subclasses APIView
         """
-        pass
+        return Response(QuestionListSerializer.get_questions)
 
     def post(self, request, format=None):
         """nothing required for lab 5"""

@@ -16,7 +16,14 @@ class QuestionListSerializer(ModelSerializer):
     Reference this stack overflow for the choices:
         https://stackoverflow.com/questions/33945148/return-nested-serializer-in-serializer-method-field
     """
-    pass
+
+    class Meta:
+        model = Question
+        fields = ('text', 'pub_date')
+
+    def get_questions(self, obj):
+        questions = Question.objects.all()
+        return  ((SerializerMethodField(questions, many=True)).data)
 
 class ChoiceSerializer(ModelSerializer):
     """
